@@ -40,7 +40,7 @@ char *strsplit(char *str,int offset, int length)
 }
 
 int strstr_index(char *str1, char *str2)
-// return index of first occurance of
+// Returns the index of the first occurance of
 // (needle) str2 in (haystack) str1
 {
     char *result = strstr(str1, str2);
@@ -49,6 +49,10 @@ int strstr_index(char *str1, char *str2)
 }
 
 int strcmp_array(char *a, const char *b[], int n )
+// Returns 1 if char *a is equal to an element in char *b[]. 
+// b[] must be NULL terminated. 
+// If n is 1, perform strncmp up to strlen(b[i]) bytes (a starts with b[i]).
+// If n is 0, perform strcmp (a == b[i]).
 {
     if (n < 0 || n > 1) return -1;
     int len = 0;
@@ -65,9 +69,9 @@ int strcmp_array(char *a, const char *b[], int n )
 }
 
 char *str_rm(char *str1, char *str2, int limit_spaces)
-// remove all occurences of str2 in str1.
-// returns a pointer to the final string.
-// Returns null if str2 > str1,
+// Remove all occurences of str2 in str1.
+// Returns a pointer to the final string.
+// Returns null if str2 > str1.
 //
 // limit_spaces == 1 will limit spaces to 
 // one per word throughout the final string.
@@ -130,7 +134,7 @@ char *str_rm(char *str1, char *str2, int limit_spaces)
         {
             if (newstr[i] == ' ')
             {
-                spaces ++;
+                spaces++;
                 newstr[i] = EOF;
             }
             else if (newstr[i] != EOF)
