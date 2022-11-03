@@ -49,7 +49,8 @@ int strstr_index(char *str1, char *str2)
 }
 
 int strcmp_array(char *a, const char *b[], int n )
-// Returns 1 if char *a is equal to an element in char *b[]. 
+// Returns 0 if char *a is equal to an element in char *b[]. 
+// Returns 1 if not equal; -1 with invalid input.
 // b[] must be NULL terminated. 
 // If n is 1, perform strncmp up to strlen(b[i]) bytes (a starts with b[i]).
 // If n is 0, perform strcmp (a == b[i]).
