@@ -7,10 +7,11 @@ char *strsplit(char *str,int offset, int length)
     int alen;
     int newsize = length;
     alen = strlen(str);
-    if(offset > alen || length > alen 
+    if(offset > alen 
+        || length > alen 
         || (offset + length) > alen
         || (offset == -1 && length == -1))
-            return "\0";
+        return "\0";
     if (-1 == length) 
     {
         length = alen - offset;
@@ -107,13 +108,13 @@ char *str_rm(char *str1, char *str2, int limit_spaces)
     if (limit_spaces)
     {
         free(str1_cpy);
-        // Find number of spaces, keep track for resize
         int space = 0, spaces = 0;
+        // mark beginning and word spaces
         for (int i = 0; i < strlen(newstr); i++)
     	{
 	    	if (newstr[i] == ' ')
    		    {
-            	if (space || i == 0 || i == (strlen(newstr) - 1)) 
+            	if (space || i == 0) 
                 {   
                     spaces++;
                     newstr[i] = EOF;
@@ -124,9 +125,18 @@ char *str_rm(char *str1, char *str2, int limit_spaces)
             else if (newstr[i] != EOF)
                 space = 0;
         }
-        // reassign size with newstr_len - spaces + 1 for null termination
+        // mark trailing spaces
+        for (int i = strlen(newstr) - 1; i >= 0; i--)
+        {
+            if (newstr[i] == ' ')
+            {
+                spaces ++;
+                newstr[i] = EOF;
+            }
+            else if (newstr[i] != EOF)
+                break;
+        }
         size = sizeof(char) * (newstr_len - spaces + 1);
-        // copy chars that are not EOF
         char *space_limited = malloc(size);
         memset(space_limited, '\0', size);
         a = 0;
