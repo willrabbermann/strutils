@@ -1,6 +1,5 @@
 #ifndef STRUTILS_H
 #define STRUTILS_H
-#endif
 
 char *strsplit(char *str,int offset, int length);
 int strstr_index(char *str1, char *str2);
@@ -171,3 +170,4 @@ char *str_rm(char *str1, char *str2, int limit_spaces)
         return newstr;
     }
 }
+#endif
